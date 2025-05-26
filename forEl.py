@@ -10,12 +10,12 @@ def get_clusters(points, radius):
     labels = [0] * len(points)
 
     while len(points) != 0:
-        # here we choose random point and get its neighbors
+        # here choose random point and get its neighbors
         cur_point = get_random_point(points)
         neighbors = get_neighbors(cur_point, radius, points)
         center_point = get_center_point(neighbors)
         # change data untill range beetween points will be higher than accuracy
-        # maybe can change to some const number
+        # maybe change to some const number
         while euclidean_distance(cur_point,  center_point) > radius:
             cur_point = center_point
             neighbors = get_neighbors(cur_point, radius, points)
@@ -27,7 +27,7 @@ def get_clusters(points, radius):
     return np.array(center_points), labels
 
 
-# get point neighbors obv, which lies in circle
+# get point neighbors obv, which lays in circle
 def get_neighbors(cur_point, radius, points):
     neighbors = [point for point in points if euclidean_distance(cur_point,  point) <= radius]
     return np.array(neighbors)
@@ -35,7 +35,7 @@ def get_neighbors(cur_point, radius, points):
 
 def get_center_point(points):
     pts = []
-    # going in np array collumns and chosing avg point like: sum(point.value)/number of points
+    # go threw np array collumns and chose avg point like: sum(point.value)/number of points
     for i in range(len(points[0])):
         pts.append(np.mean(points[:, i]))
     # pts.append(points[len(points)/2])
